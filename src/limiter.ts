@@ -1,35 +1,26 @@
-// src/limiter.ts
-
-import rateLimit, { Options } from "express-rate-limit";
+import rateLimit from "express-rate-limit";
 import RedisStore from "rate-limit-redis";
 import { createClient } from "redis";
 
-/**
- * A configurable rate limiter middleware using Redis store.
- * @param options Optional custom configuration
- * @returns Express middleware function
- */
-export const createRateLimiter = (options?: Partial<Options>) => {
-  const redisClient = createClient({
-    socket: {
-      host: "127.0.0.1",
-      port: 6379,
-    },
-  });
+const redisClient = createClient({
+  socket: {
+    host: process.env.REDIS_HOST,
+    port: Number(process.env.REDIS_PORT),
+  },
+  username: process.env.REDIS_USERNAME,
+  password: process.env.REDIS_PASSWORD,
+});
 
-  redisClient.connect().catch(console.error);
+redisClient.connect();
 
-  const limiter = rateLimit({
+export function createRateLimiter() {
+  return rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 5, // limit each IP to 5 requests per window
+    standardHeaders: true,
+    legacyHeaders: false,
     store: new RedisStore({
       sendCommand: (...args: string[]) => redisClient.sendCommand(args),
     }),
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: "Too many requests, please try again later.",
-    ...options,
   });
-
-  return limiter;
-};
+}
