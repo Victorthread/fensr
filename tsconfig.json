@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Modern JS target
+    "module": "CommonJS", // Compatible with Node.js
+    "outDir": "dist", // Output folder for compiled JS
+    "rootDir": "src", // Source folder
+    "strict": true, // Enable all strict type-checking
+    "esModuleInterop": true, // Enables default imports
+    "forceConsistentCasingInFileNames": true, // Case-sensitive paths
+    "skipLibCheck": true, // Faster builds
+    "declaration": true, // Generate .d.ts for packaging
+    "sourceMap": true // Useful for debugging
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "tests"]
+}
