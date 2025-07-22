@@ -1,23 +1,31 @@
 {
-  "name": "rate-limit",
+  "name": "fensr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fensr – Throttle wisely. Protect efficiently. A fast, Redis-powered rate limiting middleware for Node.js and Express.",
   "main": "index.js",
   "scripts": {
     "start": "tsx src/server.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Victorthread/rate-limit-middleware.git"
+    "url": "git+https://github.com/Victorthread/fensr.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "rate-limit",
+    "redis",
+    "express",
+    "middleware",
+    "api-protection",
+    "throttling",
+    "fensr"
+  ],
+  "author": "Victor Enwereuzor",
+  "license": "MIT",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/Victorthread/rate-limit-middleware/issues"
+    "url": "https://github.com/Victorthread/fensr/issues"
   },
-  "homepage": "https://github.com/Victorthread/rate-limit-middleware#readme",
+  "homepage": "https://github.com/Victorthread/fensr#readme",
   "dependencies": {
     "express": "^5.1.0",
     "express-rate-limit": "^8.0.1",
